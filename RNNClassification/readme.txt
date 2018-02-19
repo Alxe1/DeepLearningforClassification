@@ -25,3 +25,6 @@ training time: 3749.254344, testing time: 1519016980.599409
 3. serialized_text is the serialized text, you can retrain your model or load this text
 4. result is the prediction of the classification labels
 5. data file contains train and test dataset
+
+
+The details of this model can be seen in my blog: http://blog.csdn.net/littlely_ll/article/details/79337893
