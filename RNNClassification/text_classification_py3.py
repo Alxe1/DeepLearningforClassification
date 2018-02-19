@@ -121,7 +121,7 @@ class RNNTextClassifier():
                 log['val_loss'].append(val_loss)
                 log['val_acc'].append(val_acc)
                 print("val_data loss: %.4f | val_data acc: %.4f" % (val_loss, val_acc))
-        saver.save(self.sess,"c:/users/ll/desktop/model/model.ckpt")
+        saver.save(self.sess,"c:/users/ll/desktop/model/model.ckpt") #your save path
         return log
 
     def predict(self, X_test, batch_size=128):
@@ -170,8 +170,8 @@ class RNNTextClassifier():
 
 def load_data(file_in_path, pickle_text=True, pickle_out_path=None):
     '''
-    file_in_path="C:/Users/ll/desktop/training.csv"
-    file_out_path="C:/Users/ll/desktop/text.txt"
+    file_in_path=".../input/training.csv"
+    pickle_out_path=".../output/texting.txt"
     '''
     train_data = pd.read_csv(file_in_path, header=None, names=['ind', 'text'])
     texts = train_data['text']
@@ -238,11 +238,11 @@ def _idf(word,countlist):
     return math.log(len(countlist)/(1+_containing(word, countlist)))
 
 
-# ind, texts = load_data("C:/Users/ll/desktop/training.csv", True, "C:/Users/ll/desktop/text.txt")
-# id, test_texts = load_data("c:/users/ll/desktop/testing.csv",True, "C:/Users/ll/desktop/test_texts.txt")
-with open("C:/Users/ll/desktop/text.txt", 'rb') as f:
+# ind, texts = load_data(".../input/training.csv", True, ".../output/text.txt")
+# id, test_texts = load_data(".../input/testing.csv",True, ".../output/test_texts.txt")
+with open(".../output/text.txt", 'rb') as f:
     train_data = pickle.load(f)
-with open("C:/Users/ll/desktop/test_texts.txt", 'rb') as f:
+with open(".../output/test_texts.txt", 'rb') as f:
     test_data = pickle.load(f)
 
 ind, train_texts = train_data['ind'], train_data['texts']
@@ -250,13 +250,13 @@ ind -= 1
 _, test_texts = test_data['ind'], test_data['texts']
 
 # textlist_train = convert_text(train_texts, row_key_word=7, limits=10000,
-#                         ispickle=True, pickle_out_path="C:/Users/ll/desktop/textlist_train.txt")
+#                         ispickle=True, pickle_out_path=".../output/textlist_train.txt")
 # textlist_test = convert_text(test_texts, row_key_word=7, limits=10000,
-#                         ispickle=True, pickle_out_path="C:/Users/ll/desktop/textlist_test.txt")
+#                         ispickle=True, pickle_out_path=".../output/textlist_test.txt")
 # print(textlist_train[:2])
-with open("C:/Users/ll/desktop/textlist_train.txt", 'rb') as f:
+with open(".../output/textlist_train.txt", 'rb') as f:
     textlist_train = pickle.load(f)
-with open("C:/Users/ll/desktop/textlist_test.txt", 'rb') as f:
+with open(".../output/textlist_test.txt", 'rb') as f:
     textlist_test = pickle.load(f)
 
 rnn = RNNTextClassifier(10004, 11)
@@ -271,4 +271,4 @@ print(t3)
 print("training time: %f, testing time: %f" % (t2, t3))
 print(result)
 result = pd.DataFrame(list(result))
-result.to_csv("c:/users/ll/desktop/result.csv", sep=",")
+result.to_csv(".../output/result.csv", sep=",")
