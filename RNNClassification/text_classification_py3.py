@@ -249,11 +249,7 @@ ind, train_texts = train_data['ind'], train_data['texts']
 ind -= 1
 _, test_texts = test_data['ind'], test_data['texts']
 
-# textlist_train = convert_text(train_texts, row_key_word=7, limits=10000,
-#                         ispickle=True, pickle_out_path=".../output/textlist_train.txt")
-# textlist_test = convert_text(test_texts, row_key_word=7, limits=10000,
-#                         ispickle=True, pickle_out_path=".../output/textlist_test.txt")
-# print(textlist_train[:2])
+
 with open(".../output/textlist_train.txt", 'rb') as f:
     textlist_train = pickle.load(f)
 with open(".../output/textlist_test.txt", 'rb') as f:
